@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package="github.com/AchillesLe/register-user/user-service";
+
+message User {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+}
+
+service UserService {
+    rpc CreateUser(User) returns (User);
+    rpc GetUsers(Empty) returns (Users);
+}
+
+message Empty {}
+
+message Users {
+    repeated User users = 1;
+}

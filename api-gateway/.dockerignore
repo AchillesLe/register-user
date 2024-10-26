@@ -1,0 +1,15 @@
+# Ignore node modules to prevent copying to Docker image
+node_modules/
+
+# Ignore git-related files
+.git
+.gitignore
+
+# Ignore local environment and log files
+.env
+*.log
+
+# Ignore build directories and OS-specific files
+dist/
+build/
+.DS_Store
