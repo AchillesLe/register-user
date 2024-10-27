@@ -56,12 +56,12 @@ services:
     # ports:
     #   - "4001:4001"
 
-  # mail-service:
-  #   build: ./mail-service
-  #   environment:
-  #     KAFKA_HOST: kafka:9092
-  #   depends_on:
-  #     - kafka
+  mail-service:
+    build: ./mail-service
+    environment:
+      KAFKA_HOST: kafka1:29092
+    depends_on:
+      - kafka1
 networks:
   default:
     driver: bridge

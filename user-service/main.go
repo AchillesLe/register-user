@@ -17,10 +17,16 @@ type UserServiceServer struct {
 	users []*pb.User
 }
 
-func (s *UserServiceServer) CreateUser(ctx context.Context, req *pb.User) (*pb.User, error) {
-	req.Id = uuid.New().String()
-	s.users = append(s.users, req)
-	return req, nil
+func (s *UserServiceServer) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.User, error) {
+	newUser := &pb.User{
+		Id:       uuid.New().String(),
+		Username: req.GetUsername(),
+		Email:    req.GetEmail(),
+		Phone:    req.GetPhone(),
+	}
+
+	s.users = append(s.users, newUser)
+	return newUser, nil
 }
 
 func (s *UserServiceServer) GetUsers(ctx context.Context, empty *pb.Empty) (*pb.Users, error) {
@@ -36,8 +42,8 @@ func main() {
 	grpcServer := grpc.NewServer()
 	userService := &UserServiceServer{
 		users: []*pb.User{
-			{Id: uuid.New().String(), Username: "sample_user1", Email: "sample1@example.com"},
-			{Id: uuid.New().String(), Username: "sample_user2", Email: "sample2@example.com"},
+			{Id: uuid.New().String(), Username: "sample_user1", Email: "sample1@example.com", Phone: "01266623200"},
+			{Id: uuid.New().String(), Username: "sample_user2", Email: "sample2@example.com", Phone: "01277723200"},
 		},
 	}
 
