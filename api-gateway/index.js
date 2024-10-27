@@ -61,10 +61,9 @@ app.post('/create-user', async (req, res) => {
 app.get('/users', async (req, res) => {
   try {
     const getUsers = new Promise((resolve, reject) => {
-      client.getUsers({}, (err, users) => {
+      client.getUsers({}, (err, data) => {
         if (err) reject(err);
-        else resolve(users);
-        return users
+        else resolve(data);
       })
     });
     const response = await getUsers
