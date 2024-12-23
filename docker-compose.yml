@@ -39,7 +39,6 @@ services:
       - ./api-gateway:/app
     depends_on:
       - kafka1
-    restart: on-failure
 
   kafdrop:
     image: obsidiandynamics/kafdrop
